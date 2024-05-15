@@ -38,6 +38,16 @@ export class AdminService {
     return adminUser;
   }
 
+  async findByEmail(email: string) {
+    const emailUser = await this.adminRepository.findOneBy({ email });
+
+    if (emailUser === null) {
+      throw new NotFoundException(`user with E-mail:${email} not found`);
+    }
+
+    return emailUser;
+  }
+
   async update(id: number, updateAdminDto: UpdateAdminDto) {
     const adminUser = await this.adminRepository.preload({
       ...updateAdminDto,
