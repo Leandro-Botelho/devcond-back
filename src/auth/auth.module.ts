@@ -1,10 +1,12 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { LocalStrategy } from './strategy/local.strategy.local';
 import { AdminModule } from 'src/admin/admin.module';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants/jwt';
+import { JwtStrategy } from './strategy/jwt.strategy';
+import { LoginValidationMiddleware } from './middlewares/login-validation.middleware';
 
 @Module({
   imports: [
@@ -16,7 +18,11 @@ import { jwtConstants } from './constants/jwt';
       },
     }),
   ],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
 })
-export class AuthModule {}
+export class AuthModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoginValidationMiddleware).forRoutes('login');
+  }
+}
