@@ -21,7 +21,12 @@ export class AdminService {
 
     const createAdmin = this.adminRepository.create(userAdmin);
 
-    return await this.adminRepository.save(createAdmin);
+    await this.adminRepository.save(createAdmin);
+
+    return {
+      ...createAdmin,
+      password: undefined,
+    };
   }
 
   async findAll() {

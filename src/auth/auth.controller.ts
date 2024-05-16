@@ -20,12 +20,10 @@ export class AuthController {
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
   signIn(@Request() req: AuthRequest) {
-    console.log(req.user);
-
     return this.authService.login(req.user);
   }
 
-  @IsPublic()
+  // @IsPublic()
   @Get('login')
   getHello(): string {
     return 'Login service';

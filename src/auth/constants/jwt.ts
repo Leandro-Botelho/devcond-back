@@ -3,5 +3,5 @@ interface JwtProps {
 }
 
 export const jwtConstants: JwtProps = {
-  secret: 'adminsecrete6742b1c4s6',
+  secret: 'GjnAap1UeA7ui8ddKVP8kq7ZDUlpiZrhnv5XU8fDdhU=',
 };

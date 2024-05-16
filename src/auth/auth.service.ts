@@ -20,24 +20,28 @@ export class AuthService {
       const isMatch = await comparePassword(password, user.password);
 
       if (isMatch) {
-        return user;
+        return {
+          ...user,
+          password: undefined,
+        };
       }
     }
 
     throw new Error('Senha ou login incorretos');
   }
 
-  login(user: Admin): UserToken {
+  login({ email, id, name }: Admin): UserToken {
     const payload: UserPayload = {
-      sub: user.id,
-      email: user.email,
-      name: user.name,
+      id,
+      email,
+      name,
     };
 
-    const jwtToken = this.jwtService.sign(payload);
+    const access_token = this.jwtService.sign(payload);
 
     return {
-      access_token: jwtToken,
+      access_token,
+      ...payload,
     };
   }
 }
