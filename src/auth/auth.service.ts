@@ -4,7 +4,7 @@ import { Admin } from 'src/admin/entities/admin.entity';
 import { comparePassword } from 'src/shared/utils/comparePaassword';
 import { UserPayload } from './models/userPayload';
 import { JwtService } from '@nestjs/jwt';
-import { UserToken } from './models/userToken';
+import { IUserResponse } from './models/userResponse';
 
 @Injectable()
 export class AuthService {
@@ -30,7 +30,7 @@ export class AuthService {
     throw new Error('Senha ou login incorretos');
   }
 
-  login({ email, id, name }: Admin): UserToken {
+  login({ email, id, name }: Admin): IUserResponse {
     const payload: UserPayload = {
       id,
       email,
@@ -41,7 +41,9 @@ export class AuthService {
 
     return {
       access_token,
-      ...payload,
+      user: {
+        ...payload,
+      },
     };
   }
 }

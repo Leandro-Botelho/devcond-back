@@ -23,7 +23,7 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  // @IsPublic()
+  @IsPublic()
   @Get('login')
   getHello(): string {
     return 'Login service';
