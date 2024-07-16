@@ -8,6 +8,9 @@ import { AdminModule } from './admin/admin.module';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
+import { ServiceUserModule } from './service-user/service-user.module';
+import { MessagesModule } from './messages/messages.module';
+import { FindItemsModule } from './find-items/find-items.module';
 
 @Module({
   imports: [
@@ -16,6 +19,9 @@ import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
     UsersModule,
     AuthModule,
     AdminModule,
+    ServiceUserModule,
+    MessagesModule,
+    FindItemsModule,
   ],
   controllers: [AppController],
   providers: [

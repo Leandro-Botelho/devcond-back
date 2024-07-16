@@ -10,6 +10,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUsersDto } from './dto/createUsers.dto';
 import { UpdateUsersDTO } from './dto/updateUsers.dto';
+import { IsPublic } from 'src/auth/decorators/is-public-decorator';
 
 @Controller('users')
 export class UsersController {
@@ -25,6 +26,7 @@ export class UsersController {
     return this.userService.findOneByUid(id);
   }
 
+  @IsPublic()
   @Post()
   createUser(@Body() createUsersDto: CreateUsersDto) {
     return this.userService.createUser(createUsersDto);
