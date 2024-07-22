@@ -2,15 +2,18 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ServiceUser {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  readonly title: string;
 
   @Column()
-  date: string;
+  readonly date: string;
 
   @Column()
-  description: string;
+  readonly status: boolean;
+
+  @Column()
+  readonly description: string;
 }

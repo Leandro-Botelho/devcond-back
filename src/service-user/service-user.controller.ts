@@ -12,7 +12,6 @@ import { CreateServiceUserDto } from './dto/create-service-user.dto';
 import { UpdateServiceUserDto } from './dto/update-service-user.dto';
 import { IsPublic } from 'src/auth/decorators/is-public-decorator';
 
-//** */
 @IsPublic()
 @Controller('service-user')
 export class ServiceUserController {

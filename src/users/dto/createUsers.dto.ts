@@ -18,4 +18,7 @@ export class CreateUsersDto {
 
   @IsString()
   readonly town: string;
+
+  @IsString()
+  readonly created_at: Date;
 }

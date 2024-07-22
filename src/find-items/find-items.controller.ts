@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FindItemsService } from './find-items.service';
 import { CreateFindItemDto } from './dto/create-find-item.dto';
 import { UpdateFindItemDto } from './dto/update-find-item.dto';
@@ -23,7 +31,10 @@ export class FindItemsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFindItemDto: UpdateFindItemDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateFindItemDto: UpdateFindItemDto,
+  ) {
     return this.findItemsService.update(+id, updateFindItemDto);
   }
 

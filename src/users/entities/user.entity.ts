@@ -22,4 +22,7 @@ export class Users {
 
   @Column()
   town: string;
+
+  @Column()
+  created_at: Date;
 }
